@@ -59,13 +59,6 @@ struct Emojibook_Widget: Widget {
         }
         .configurationDisplayName("Random Emoji")
         .description("Display a widget with an emoji that is updated randomly.")
-        .supportedFamilies([.systemSmall])
-    }
-}
-
-struct Emojibook_Widget_Previews: PreviewProvider {
-    static var previews: some View {
-        Emojibook_WidgetEntryView(entry: SimpleEntry(date: Date(), emojiDetails: EmojiProvider.random()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
     }
 }
