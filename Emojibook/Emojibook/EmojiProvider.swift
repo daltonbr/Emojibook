@@ -2,6 +2,14 @@ import Foundation
 
 public struct EmojiProvider {
 
+  /// Chooses a random `EmojiDetails` item from the list of all emoji and returns it.
+  /// /// /// /// - Returns: A random `EmojiDetails` item.
+  static func random() -> EmojiDetails {
+    let allEmoji = EmojiProvider.all()
+    let randomIndex = Int.random(in: 0..<allEmoji.count)
+    return allEmoji[randomIndex]
+  }
+    
   /// Creates a list of emoji details that includes an emoji along with its name and description.
   /// - Returns: The list of `EmojiDetail`s
   /// - Note: Emoji descriptions obtained from [Empojipedia](https://emojipedia.org/).
