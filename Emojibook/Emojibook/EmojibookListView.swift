@@ -4,7 +4,8 @@ struct EmojibookListView: View {
     
     let emojiData: [EmojiDetails] = EmojiProvider.all()
     @State private var showingDetail: Bool = false
-    
+    @State private var visibleEmojiDetails: EmojiDetails?
+
     var body: some View {
         NavigationView {
             List {
@@ -23,6 +24,13 @@ struct EmojibookListView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Emojibook")
         }
+        .onOpenURL { url in
+                   guard let emojiDetails = emojiData.first(where: { $0.url == url }) else { return }
+                   visibleEmojiDetails = emojiDetails
+                   }
+        .sheet(item: $visibleEmojiDetails, content: { emojiDetails in
+            EmojiDetailsView(emojiDetails: emojiDetails)
+        })
     }
 }
 
