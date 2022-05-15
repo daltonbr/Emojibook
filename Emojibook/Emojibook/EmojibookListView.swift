@@ -3,12 +3,20 @@ import SwiftUI
 struct EmojibookListView: View {
     
     let emojiData: [EmojiDetails] = EmojiProvider.all()
+    @State private var showingDetail: Bool = false
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(emojiData, content: { emojiDetails in
-                    EmojiItemView(emoji: emojiDetails.emoji, emojiName: emojiDetails.name)
+                    Button(action: {
+                        showingDetail.toggle()
+                    }, label: {
+                        EmojiItemView(emoji: emojiDetails.emoji, emojiName: emojiDetails.name)
+                    })
+                    .sheet(isPresented: $showingDetail) {
+                        EmojiDetailsView(emojiDetails: emojiDetails)
+                    }
                 })
             }
             .foregroundColor(.black)
@@ -26,6 +34,34 @@ struct EmojiItemView: View {
         Text("\(emoji) \(emojiName)")
             .font(.largeTitle)
             .padding([.top, .bottom])
+    }
+}
+
+struct EmojiDetailsView: View {
+    var emojiDetails: EmojiDetails
+    
+    var body: some View {
+        ZStack {
+            // Background color
+            Color(UIColor.systemIndigo).edgesIgnoringSafeArea(.all)
+            
+            // Emoji data
+            VStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("\(emojiDetails.emoji) \(emojiDetails.name)")
+                            .font(.largeTitle)
+                            .bold()
+                    }
+                    .padding()
+                    
+                    Text(emojiDetails.description)
+                        .padding([.leading, .trailing, .bottom])
+                        .font(.title)
+                }
+            }
+            .foregroundColor(.white)
+        }
     }
 }
 
