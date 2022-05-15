@@ -1,26 +1,31 @@
-//
-//  EmojibookListView.swift
-//  Emojibook
-//
-//  Created by Dalton Lima on 5/15/22.
-//
-
 import SwiftUI
 
 struct EmojibookListView: View {
+    
+    let emojiData: [EmojiDetails] = EmojiProvider.all()
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(0..<10, content: { i in
-                    Text("\(i): 🦄")
-                        .font(.largeTitle)
-                        .padding([.top, .bottom])
+                ForEach(emojiData, content: { emojiDetails in
+                    EmojiItemView(emoji: emojiDetails.emoji, emojiName: emojiDetails.name)
                 })
             }
             .foregroundColor(.black)
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Emojibook")
         }
+    }
+}
+
+struct EmojiItemView: View {
+    let emoji: String
+    let emojiName: String
+    
+    var body: some View {
+        Text("\(emoji) \(emojiName)")
+            .font(.largeTitle)
+            .padding([.top, .bottom])
     }
 }
 
