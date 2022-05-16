@@ -10,11 +10,11 @@ A primer in using Widgets in iOS 15.
 
 Small widget             |  Medium widget
 :-------------------------:|:-------------------------:
-![Small](../EmojiSmall.png)  |  ![Medium](../EmojiMedium.png)
+![Small](./docs/EmojiSmall.png)  |  ![Medium](./docs/EmojiMedium.png)
 
 Large widget             |  Widgets
 :-------------------------:|:-------------------------:
-![Large](../EmojiLarge.png)  |  ![Widgets](../Widget.png)
+![Large](./docs/EmojiLarge.png)  |  ![Widgets](./docs/Widget.png)
 
 ## About
 
